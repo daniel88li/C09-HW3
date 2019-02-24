@@ -84,6 +84,7 @@ var api = (function(){
         send("POST", "/signup/", {username, password}, function(err, res){
             if (err) return notifyErrorListeners(err);
             notifyUserListeners(getUsername());
+            notifyGalleryListeners();
         });
     };
     
@@ -99,7 +100,7 @@ var api = (function(){
         send("GET", "/signout/", null, function(err, res){
             if (err) return notifyErrorListeners(err);
             notifyUserListeners(getUsername());
-            notifyHideListeners(' ');
+            notifyHideListeners('');
         });
     };
     
@@ -139,9 +140,21 @@ var api = (function(){
         });
     };
     
+    module.viewGallery = function(username) {
+        getImage(username, 0, function(err, images){
+            if (err) {
+                notifyHideListeners('');
+                return notifyErrorListeners(err);
+            }
+            notifyImageListeners(images[0]);
+            notifyHideListeners(images[0].author);
+        });
+    }
+
     module.changeImage = function(username, page){
         getImage(username, page, function(err, images){
             if (err) return notifyErrorListeners(err);
+            
             notifyImageListeners(images[0]);
             notifyHideListeners(images[0].author);
         });
@@ -204,10 +217,14 @@ var api = (function(){
 
     function notifyHideListeners(username){
         hideListeners.forEach(function(listener){
-            getFirstImage(username, function(err, image){
-                if (err) return notifyErrorListeners(err);
-                listener(username, image);
-            });
+            if (username == '') {
+                listener(username, []);
+            } else {
+                getFirstImage(username, function(err, image){
+                    if (err) return notifyErrorListeners(err);
+                    listener(username, image);
+                });
+            }
         });
     }
 

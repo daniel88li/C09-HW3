@@ -54,7 +54,7 @@
             let username = document.querySelector("#login_form [name=username]").value;
             let password = document.querySelector("#login_form [name=password]").value;
             document.getElementById("login_form").reset();
-            document.getElementById("login_form").style.visibility = 'hidden';
+            document.getElementById("login_form").style.display = 'none';
 
             api.signup(username, password);
         });
@@ -217,7 +217,7 @@
         document.getElementById('gallery_selection').addEventListener('submit', function(e) {
             e.preventDefault();
             let username = document.getElementById("user_gallery_list").value;
-            api.changeImage(username, 0);
+            api.viewGallery(username);
             document.getElementById("title").innerHTML = username + "'s Web Gallery";
             imgPage = 0;
         });
