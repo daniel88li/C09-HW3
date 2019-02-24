@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>The Web Gallery</title>
+    <link href="style/main.css" rel="stylesheet" type="text/css"/>
+    <link href="style/messages.css" rel="stylesheet" type="text/css"/>
+    <link href="style/form.css" rel="stylesheet" type="text/css"/>
+    
+</head>
+<body>
+    <header>
+        <a href="/" id="title">The Web Gallery</a>
+        <button type="button" id="signin_button" class="btn">Sign in/Sign up</button>
+        <button type="button" id="signout_button" class="btn init_visible">Sign out</button>
+    </header>
+    
+    <p id="error_box"></p>
+    
+    <form class="complex_form init_hide" id="login_form">
+        <input type="text" name="username" class="form_element" placeholder="Enter a username" required/>
+        <input type="password" name="password" class="form_element" placeholder="Enter a password" required/>
+        <div>
+            <button id="signin" name="action" class="btn">Sign in</button>
+            or <button id="signup" name="action" class="btn">Sign up</button>
+        </div>
+    </form>
+    
+    <form class="complex_form init_hide" id="gallery_selection">
+        <div class="form_title">Browse gallery</div>
+        <label class="form_element">Select a user gallery
+        <select id="user_gallery_list" class="form_element">
+        </select>
+        </label>
+        <button type="submit" class="btn">View gallery</button>
+    </form>
+    
+    <div id="display_box">
+    </div>
+
+    <button type="button" class="image_form_btn init_hide">Add image</button>
+
+    <form class="complex_form init_hide" id="image_form">
+        <div class="form_title">Add an image</div>
+        <input type="text" id="image_title" class="form_element" placeholder="Enter image title" required/>
+        <input type="file" id="image_file" name = "picture" class="form_element" accept="image/*" required/>
+        <button type="submit" class="btn">Post image</button>
+    </form>
+    
+    <form class="complex_form init_hide" id="comment_form">
+        <div class="form_title">Post a comment</div>
+        <textarea rows="5" id="comment_content" class="form_element" placeholder="Enter your comment" required></textarea>
+        <button type="submit" class="btn">Post your comment</button>
+    </form>
+
+    <div class="comments init_hide">
+    </div>
+    
+    <div class="comment_navigation init_hide">
+        <div class="comment-previous icon"></div>
+        <div class="page_Num"></div>
+        <div class="comment-next icon"></div>
+    </div>
+    
+    <footer>
+        <a href='/credits.html'>credits</a>
+    </footer>
+    <script src="js/api.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
