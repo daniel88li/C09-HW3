@@ -2,8 +2,7 @@
 var api = (function(){
     "use strict";
     var module = {};
-    
-    var currImage = null;
+
     function sendFiles(method, url, data, callback){
         let formdata = new FormData();
         Object.keys(data).forEach(function(key){
@@ -152,14 +151,6 @@ var api = (function(){
         notifyCommentListeners(imageId, page);
     };
 
-    // module.getMaxImagePage = function() {
-    //     send("GET", "/api/AllImages/", null, function(err, images){
-    //         if (err) return notifyErrorListeners(err);
-    //         console.log(images.length);
-    //         return images.length - 1;
-    //     });
-    // };
-
     let getImage = function(username, page, callback){
         send("GET", "/api/image/" + username + "/?page=" + page, null, callback);
     };
@@ -175,7 +166,6 @@ var api = (function(){
     let imageListeners = [];
     
     function notifyImageListeners(image){
-        //currImage = image;
         imageListeners.forEach(function(listener){
             listener(image);
             if (image) {
@@ -188,11 +178,6 @@ var api = (function(){
     // to be notified when an image is added or deleted from the gallery
     module.onImageUpdate = function(listener){
         imageListeners.push(listener);
-        // getFirstImage(function(err, image){
-        //     if (err) return notifyErrorListeners(err);
-        //     currImage = image[0];
-        //     listener(image[0]);
-        // });
     };
     
     let commentListeners = [];
@@ -210,24 +195,11 @@ var api = (function(){
     // to be notified when a comment is added or deleted to an image
     module.onCommentUpdate = function(listener){
         commentListeners.push(listener);
-        // getFirstImage(function(err, image){
-        //     if (image[0]) {
-        //         getComments(image[0]._id, 0, function(err, comments){
-        //             if (err) return notifyErrorListeners(err);
-        //             listener(comments);
-        //         });
-        //     }
-        // });
     };
     
     let hideListeners = [];
     module.onHideCheck = function(listener){
-        let username = getUsername();
         hideListeners.push(listener);
-        // getFirstImage(username, function(err, image){
-        //     if (err) return notifyErrorListeners(err);
-        //     listener(username, image);
-        // });
     };
 
     function notifyHideListeners(username){

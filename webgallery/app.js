@@ -64,7 +64,6 @@ var Comment = (function(){
     };
 }());
 
-// curl -H "Content-Type: application/json" -X POST -d '{"username":"alice","password":"alice"}' -c cookie.txt localhost:3000/signup/
 app.post('/signup/', function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
@@ -86,7 +85,6 @@ app.post('/signup/', function (req, res, next) {
     });
 });
 
-// curl -H "Content-Type: application/json" -X POST -d '{"username":"alice","password":"alice"}' -c cookie.txt localhost:3000/signin/
 app.post('/signin/', function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
@@ -106,7 +104,6 @@ app.post('/signin/', function (req, res, next) {
     });
 });
 
-// curl -b cookie.txt -c cookie.txt localhost:3000/signout/
 app.get('/signout/', isAuthenticated, function (req, res, next) {
     req.session.destroy();
     res.setHeader('Set-Cookie', cookie.serialize('username', '', {
@@ -127,7 +124,7 @@ app.post('/api/images/', upload.single('picture'), isAuthenticated, function (re
     
 });
 
-app.post('/api/comments/', isAuthenticated, isAuthenticated, function (req, res, next) {
+app.post('/api/comments/', isAuthenticated, function (req, res, next) {
     let comment = new Comment(req.body, req.username);
     comments.insert(comment, function (err, comment) {
         if (err) return res.status(500).end(err);
@@ -145,7 +142,7 @@ app.get('/api/image/:username/', isAuthenticated, function (req, res, next) {
     });
 });
 
-app.get('/api/:username/firstImage/', function (req, res, next) {
+app.get('/api/:username/firstImage/', isAuthenticated, function (req, res, next) {
     images.find({author: req.params.username}).sort({createdAt: 1}).limit(1).exec(function(err, image) { 
         if (err) return res.status(500).end(err);
         return res.json(image);
@@ -198,6 +195,7 @@ app.get('/api/galleryList/', function (req, res, next) {
     //     return res.json(userList);
     // });
     users.find({}, {_id: 1, hash: 0, salt: 0}, function(err, userObjs) {
+        if (err) return res.status(500).end(err);
         var userList = [];
         userObjs.forEach(function(user){
             userList.push(user._id);
