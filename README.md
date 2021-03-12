@@ -1,3 +1,6 @@
+My code from old course HW, uses some outdated packages, requests
+<hr>
+
 The objective of these assignments is to build an application called *The Web Gallery* where users can share pictures and comments. This application is similar to existing web applications such as Facebook (the photo album part), Picasa or Flickr. 
 
 # Managing users and Security
