@@ -1,77 +1,76 @@
-.comments{
-    font-size: 16px;
-    display:flex;
-    flex-direction: column; 
+.comments {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
-.comment{
-    display:flex;
-    flex-direction: column;
-    min-height: 100px;
-    margin-top:20px;
-    border-bottom: 1px solid grey; 
+.comment {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  margin-top: 20px;
+  border-bottom: 1px solid grey;
 }
 
 .comment_head {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.comment_body{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+.comment_body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .comment_author {
-    font-weight: bold;
+  font-weight: bold;
 }
-.comment_content{
-    font-size: 20px;
-    width: 90%;
-    word-wrap: break-word;
-}
-
-.icon{
-    width:50px;
-    height: 50px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:75%;
-
+.comment_content {
+  font-size: 20px;
+  width: 90%;
+  word-wrap: break-word;
 }
 
-.image-previous{
-    background-image: url('../media/previous.png');
+.icon {
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 75%;
 }
 
-.image-next{
-    background-image: url('../media/next.png');
+.image-previous {
+  background-image: url("../media/previous.png");
 }
 
-.image-delete{
-    background-image: url('../media/delete.png');
+.image-next {
+  background-image: url("../media/next.png");
 }
 
-.comment-previous{
-    background-image: url('../media/comment-previous.png');
+.image-delete {
+  background-image: url("../media/delete.png");
 }
 
-.comment-next{
-    background-image: url('../media/comment-next.png');
+.comment-previous {
+  background-image: url("../media/comment-previous.png");
 }
 
-.comment-delete{
-    background-image: url('../media/comment-delete.png');
+.comment-next {
+  background-image: url("../media/comment-next.png");
+}
+
+.comment-delete {
+  background-image: url("../media/comment-delete.png");
 }
 
 .page_Num {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }
